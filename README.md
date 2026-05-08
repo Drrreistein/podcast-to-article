@@ -1,8 +1,25 @@
-# podcast-to-article
+# 阅读播客 (podcast-to-article)
 
 将播客访谈、YouTube / B站视频字幕转换为结构清晰、阅读友好的长文 HTML。
 
 > 像读书一样读播客——告别流水账，获得有章节、有观点、有引用的深度长文。
+
+---
+
+## AI Agent 使用方法（最简方式）
+
+在支持 Skill 的 AI Agent（如 WorkBuddy / Claude Code）中，直接发送指令即可：
+
+```
+/podcast-to-article https://www.youtube.com/watch?v=xxx
+```
+
+**示例：**
+```
+/podcast-to-article https://www.youtube.com/watch?v=AFpeWo1GTeg
+```
+
+Agent 会自动完成：提取字幕 → AI 摘要 → 章节规划 → 生成 kami 风格长文 HTML。
 
 ---
 
@@ -28,7 +45,15 @@
 
 ---
 
-## 快速开始
+## 效果预览
+
+![示例 1：Demis Hassabis AGI 长文](assets/exp1.png)
+
+![示例 2：文章章节结构](assets/exp2.png)
+
+---
+
+## 快速开始（手动模式）
 
 ### 前置要求
 
@@ -37,7 +62,7 @@ python3 --version   # Python 3.8+
 pip install requests
 ```
 
-### 方式一：直接输入视频链接（推荐）
+### 方式一：直接输入视频链接
 
 ```bash
 cd podcast-to-article
@@ -50,7 +75,7 @@ python3 scripts/run.py --url "https://www.youtube.com/watch?v=xxx"
 3. 分块处理 → `02_chunked.json`
 4. 输出 AI 处理提示 → `00_ai_prompt.txt`
 
-然后将 `00_ai_prompt.txt` 的内容交给 AI（如 WorkBuddy / Claude）依次完成摘要、章节规划、文章生成，最后执行：
+然后将 `00_ai_prompt.txt` 的内容交给 AI 依次完成摘要、章节规划、文章生成，最后执行：
 
 ```bash
 python3 scripts/build_html.py \
@@ -63,21 +88,6 @@ python3 scripts/build_html.py \
 
 ```bash
 python3 scripts/run.py "path/to/transcript.md"
-```
-
-字幕文件格式示例：
-
-```markdown
----
-title: "访谈标题"
-source: "https://..."
-published: 2026-05-07
----
-
-## Transcript
-
-**0:02** · 说话内容...
-**1:30** · 另一段内容...
 ```
 
 ---
@@ -109,7 +119,7 @@ published: 2026-05-07
 ```
 podcast-to-article/
 ├── README.md
-├── SKILL.md                 # WorkBuddy 技能描述
+├── SKILL.md                 # Agent Skill 描述
 ├── scripts/
 │   ├── run.py               # 主入口：创建会话、提取字幕
 │   ├── parse_transcript.py  # 解析 Markdown 字幕为结构化数据
@@ -123,14 +133,14 @@ podcast-to-article/
 │   └── 04-compose.md        # AI 提示：正文生成
 └── assets/
     ├── template.html        # kami 风格 HTML 模板
-    └── fonts/               # 本地字体资源
+    ├── fonts/               # 本地字体资源
+    ├── exp1.png             # 效果示例图
+    └── exp2.png             # 效果示例图
 ```
-
-> `outputs/` 目录（会话数据）不纳入版本控制，请自行创建。
 
 ---
 
-## 输出示例
+## 输出结构
 
 每次运行生成独立会话文件夹：
 
