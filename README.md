@@ -8,32 +8,14 @@
 
 ---
 
-## AI Agent 使用方法（最简方式）
-
-在支持 Skill 的 AI Agent（如 WorkBuddy / Claude Code）中，直接发送指令即可：
-
-```
-/podcast-to-article https://www.youtube.com/watch?v=xxx
-```
-
-**示例：**
-```
-/podcast-to-article https://www.youtube.com/watch?v=AFpeWo1GTeg
-```
-
-Agent 会自动完成：提取字幕 → AI 摘要 → 章节规划 → 生成 kami 风格长文 HTML。
-
-### 用法二：提供字幕文件
+## AI Agent 使用方法
 
 ```
 /podcast-to-article path/to/字幕文件.md
-```
-
-### 用法三：提供视频链接（最简）
-
-```
 /podcast-to-article https://www.youtube.com/watch?v=xxx
 ```
+
+Agent 自动完成：提取字幕 → AI 摘要 → 章节规划 → 生成 kami 风格长文 HTML。
 
 ---
 
